@@ -1,38 +1,159 @@
-.App {
+/* ===== Global Styles ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef2ff;
+  overflow-x: hidden;
+  color: #333;
+}
+
+.portfolio {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1; /* Above waves */
+}
+
+/* ===== Wave Background ===== */
+.wave-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 200px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%239ab3ff' fill-opacity='0.6' d='M0,192L48,186.7C96,181,192,171,288,149.3C384,128,480,96,576,112C672,128,768,192,864,213.3C960,235,1056,213,1152,192C1248,171,1344,149,1392,138.7L1440,128L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+  animation: waveMove 12s linear infinite;
+  z-index: 0;
+}
+
+@keyframes waveMove {
+  to { transform: translateX(-50%); }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.05); }
+}
+
+/* ===== Header ===== */
+.header {
   text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.name {
+  font-size: 2.5rem;
+  color: #3b82f6;
+  margin: 10px 0 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tagline {
+  font-size: 1.1rem;
+  color: #444;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* ===== Card Style ===== */
+.card {
+  background: rgba(255,255,255,0.85);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about { animation-delay: 0.2s; }
+.skills-interests { animation-delay: 0.4s; }
+.projects { animation-delay: 0.6s; }
+.contact { animation-delay: 0.8s; }
+
+/* ===== Skills & Interests Layout ===== */
+.skills-interests {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ===== Projects ===== */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.project-card h3 {
+  margin: 0 0 8px;
+  color: #2563eb;
+}
+
+.project-card a, 
+.coming-soon {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.project-card a {
   color: white;
+  background: #3b82f6;
+  animation: pulse 2s infinite ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.project-card a:hover {
+  background: #2563eb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.coming-soon {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* ===== Contact ===== */
+.contact a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .skills-interests {
+    grid-template-columns: 1fr;
   }
 }
